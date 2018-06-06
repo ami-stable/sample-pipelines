@@ -1,0 +1,40 @@
+# Language setting
+language: python
+
+# Version number
+python:
+  - 2.7
+
+build:
+  ci:
+    - python --version
+    
+resources:
+
+  - name: dockercliconfig
+    type: cliConfig
+    integration: "docker"
+    
+  - name: version-resource
+    type: version
+    seed:
+      versionName: "0.0.1-beta"
+
+  - name: repo
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: Varsha-Arun/sample_pipelines
+      branch: master    
+        
+jobs:
+  - name: simplerunsh
+    type: runSh
+    steps:
+      - IN: repo
+      - TASK:
+        - script: ls
+        - script: sleep 3m
+        #- script: ./GET/infra-repo/infra-repo/provision.sh
+    always:
+      - script: echo "This works on_always"
