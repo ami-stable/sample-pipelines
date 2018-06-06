@@ -24,7 +24,7 @@ resources:
     type: gitRepo
     integration: github
     pointer:
-      sourceName: ami-stable/sample_pipelines
+      sourceName: ami-stable/sample-pipelines
       branch: master    
         
 jobs:
