@@ -11,7 +11,7 @@ build:
     
 resources:
 
-  - name: dockercliconfig
+  - name: stabledockercliconfig
     type: cliConfig
     integration: "docker"
     
@@ -20,21 +20,20 @@ resources:
     seed:
       versionName: "0.0.1-beta"
 
-  - name: repo
+  - name: stablerepo
     type: gitRepo
     integration: github
     pointer:
-      sourceName: Varsha-Arun/sample_pipelines
+      sourceName: ami-stable/sample_pipelines
       branch: master    
         
 jobs:
-  - name: simplerunsh
+  - name: stablesimplerunsh
     type: runSh
     steps:
-      - IN: repo
+      - IN: stablerepo
       - TASK:
         - script: ls
-        - script: sleep 3m
         #- script: ./GET/infra-repo/infra-repo/provision.sh
     always:
       - script: echo "This works on_always"
